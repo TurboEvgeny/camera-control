@@ -4,4 +4,5 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(camera-control-server 
 	main.cpp
 	DiodState.cpp
-	DiodColor.cpp)
+	DiodColor.cpp
+	DiodFrequency.cpp)
