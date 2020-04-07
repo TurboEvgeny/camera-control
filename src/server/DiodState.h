@@ -14,25 +14,6 @@ private:
     bool turnOn;
 };
 
-enum class DiodPalette
-{
-    RED,
-    GREEN,
-    BLUE
-};
-// Цвет диода
-class DiodColor : public IData
-{
-public:
-    DiodColor();
-    DiodColor(DiodPalette init);
-    ~DiodColor();
-    void setValue(std::string value);
-    std::string getValueString();
-private:
-    // текущий цвет диода
-    DiodPalette color;
-};
 // частота диода
 class DiodFrequency : public IData
 {
