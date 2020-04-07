@@ -13,7 +13,7 @@ DiodState::~DiodState()
 {
 }
 
-void DiodState::setValue(std::string valString)
+void DiodState::setValue(const std::string& valString)
 {
 }
 

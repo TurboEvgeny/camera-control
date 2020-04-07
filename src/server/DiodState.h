@@ -7,7 +7,7 @@ public:
     DiodState();
     DiodState(bool initVal);
     ~DiodState();
-    void setValue(std::string valString);
+    void setValue(const std::string& valString);
     std::string getValueString();
 private:
     // состояние диода: true - включен

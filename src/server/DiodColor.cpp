@@ -16,7 +16,7 @@ DiodColor::~DiodColor()
 {
 }
 
-void DiodColor::setValue(const std::string value)
+void DiodColor::setValue(const std::string& value)
 {
     if (value.compare("red") == 0)
     {
