@@ -4,6 +4,5 @@
 class IData
 {
 public:
-    virtual void setValue(const std::string& valString) = 0;
-    virtual std::string getValueString() = 0;
+    virtual std::string getValueString() const = 0;
 };
