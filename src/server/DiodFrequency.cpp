@@ -15,9 +15,9 @@ DiodFrequency::DiodFrequency(double initVal, double min, double max):
 {
 }
 
-void DiodFrequency::setValue(const std::string& value)
+void DiodFrequency::setValue(double freq)
 {
-    this->value = 1.111;
+    this->value = freq;
     // проверка на пользовательские ограничения
     if (this->value < this->minValue)
     {
@@ -34,7 +34,7 @@ void DiodFrequency::setValue(const std::string& value)
     }
 }
 
-std::string DiodFrequency::getValueString()
+std::string DiodFrequency::getValueString() const
 {
     return std::to_string(this->value);
 }

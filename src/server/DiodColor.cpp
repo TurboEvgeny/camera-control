@@ -16,23 +16,12 @@ DiodColor::~DiodColor()
 {
 }
 
-void DiodColor::setValue(const std::string& value)
+void DiodColor::setValue(DiodPalette val)
 {
-    if (value.compare("red") == 0)
-    {
-        this->color = DiodPalette::RED;
-    }
-    else if (value.compare("green") == 0)
-    {
-        this->color = DiodPalette::GREEN;
-    }
-    else if (value.compare("blue") == 0)
-    {
-        this->color = DiodPalette::BLUE;
-    }
+    this->color = val;
 }
 
-std::string DiodColor::getValueString()
+std::string DiodColor::getValueString() const
 {
     switch(this->color)
     {

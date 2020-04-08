@@ -13,11 +13,12 @@ DiodState::~DiodState()
 {
 }
 
-void DiodState::setValue(const std::string& valString)
+void DiodState::setValue(bool val)
 {
+    this->turnOn = val;
 }
 
-std::string DiodState::getValueString()
+std::string DiodState::getValueString() const
 {
     if (this->turnOn)
     {

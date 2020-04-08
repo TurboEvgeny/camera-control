@@ -10,8 +10,8 @@ public:
     // max - максимальное ограничение, Гц
     DiodFrequency(double initVal, double min, double max);
     ~DiodFrequency();
-    void setValue(const std::string& value) override;
-    std::string getValueString() override;
+    void setValue(double freq);
+    std::string getValueString() const override;
 private:
     // частота в Гц
     double value;

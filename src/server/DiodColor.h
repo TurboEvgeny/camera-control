@@ -13,8 +13,8 @@ public:
     DiodColor();
     DiodColor(DiodPalette initColor);
     ~DiodColor();
-    void setValue(const std::string& value) override;
-    std::string getValueString() override;
+    void setValue(DiodPalette val);
+    std::string getValueString() const override;
 private:
     // текущий цвет диода
     DiodPalette color;
