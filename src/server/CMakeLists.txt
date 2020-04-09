@@ -6,4 +6,5 @@ add_executable(camera-control-server
     DiodState.cpp
     DiodColor.cpp
     DiodFrequency.cpp
-    CommandsDiodState.cpp)
+    CommandsDiodState.cpp
+    CommandsDiodColor.cpp)
