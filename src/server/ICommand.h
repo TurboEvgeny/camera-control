@@ -3,6 +3,9 @@
 // интерфейсный класс для описания команд
 class ICommand
 {
+public:
+    // виртульный деструктор
+    virtual ~ICommand() {}
     // выдача имени команды
     virtual std::string getName() = 0;
     // логика команды -
