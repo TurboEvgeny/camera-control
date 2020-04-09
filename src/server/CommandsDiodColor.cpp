@@ -57,5 +57,5 @@ std::string GetDiodColorCommand::getName()
 
 std::string GetDiodColorCommand::execute(const std::string& arg)
 {
-    return ("OK" + this->color.getValueString());
+    return ("OK " + this->color.getValueString());
 }

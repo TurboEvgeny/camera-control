@@ -52,5 +52,5 @@ std::string GetDiodStateCommand::getName()
 
 std::string GetDiodStateCommand::execute(const std::string& arg)
 {
-    return ("OK" + this->state.getValueString());
+    return ("OK " + this->state.getValueString());
 }

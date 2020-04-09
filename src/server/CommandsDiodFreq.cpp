@@ -71,5 +71,5 @@ std::string GetDiodFreqCommand::getName()
 
 std::string GetDiodFreqCommand::execute(const std::string& arg)
 {
-    return ("OK" + freq.getValueString());
+    return ("OK " + freq.getValueString());
 }
