@@ -13,6 +13,20 @@ DiodFrequency::DiodFrequency(double initVal, double min, double max):
   minValue(min),
   maxValue(max)
 {
+    // проверка на некорректные аргументы
+    if (minValue > maxValue)
+    {
+      minValue = maxValue;
+    }
+    // проверяем что начальное значение входит диапазон
+    if (this->value < this->minValue)
+    {
+        this->value = this->minValue;
+    }
+    else if (this->value > this->maxValue)
+    {
+        this->value = this->maxValue;
+    }
 }
 // задача необходимой частоты, возвращает true если прошло успешно
 bool DiodFrequency::setValue(double freq)
