@@ -17,7 +17,7 @@ private:
     // частота в Гц
     double value;
     // минимально допустимая частота, Гц
-    const double minValue;
+    double minValue;
     // максимально допустимая частота, Гц
-    const double maxValue;
+    double maxValue;
 };
