@@ -7,5 +7,5 @@ class ICommand
     virtual std::string getName() = 0;
     // логика команды -
     // возвращает строку - ответ для клиента о результате выполнения
-    virtual std::string execute(std::string arg) = 0;
+    virtual std::string execute(const std::string& arg) = 0;
 };

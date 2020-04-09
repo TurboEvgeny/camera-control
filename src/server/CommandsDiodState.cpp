@@ -16,7 +16,7 @@ std::string SetDiodStateCommand::getName()
     return "set-led-state";
 }
 
-std::string SetDiodStateCommand::execute(std::string arg)
+std::string SetDiodStateCommand::execute(const std::string& arg)
 {
     if (arg.compare("on") == 0)
     {
@@ -50,7 +50,7 @@ std::string GetDiodStateCommand::getName()
     return "get-led-state";
 }
 
-std::string GetDiodStateCommand::execute(std::string arg)
+std::string GetDiodStateCommand::execute(const std::string& arg)
 {
     return ("OK" + this->state.getValueString());
 }

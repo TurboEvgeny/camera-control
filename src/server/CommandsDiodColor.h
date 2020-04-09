@@ -10,7 +10,7 @@ public:
     // имя команды
     std::string getName() override;
     // выполнить команду с аргументами
-    std::string execute(std::string arg) override;
+    std::string execute(const std::string& arg) override;
 private:
     // ссылка на данные о цвете диода
     DiodColor& color;
@@ -24,7 +24,7 @@ class GetDiodColorCommand : public ICommand
     // имя команды
     std::string getName() override;
     // выполнить команду с аргументами
-    std::string execute(std::string arg) override;
+    std::string execute(const std::string& arg) override;
  private:
     // ссылка на данные о состоянии диода
     const DiodColor& color;

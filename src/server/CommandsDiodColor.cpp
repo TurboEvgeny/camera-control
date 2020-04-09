@@ -16,7 +16,7 @@ std::string SetDiodColorCommand::getName()
     return "set-led-color";
 }
 
-std::string SetDiodColorCommand::execute(std::string arg)
+std::string SetDiodColorCommand::execute(const std::string& arg)
 {
     if (arg.compare("red") == 0)
     {
@@ -55,7 +55,7 @@ std::string GetDiodColorCommand::getName()
     return "get-led-color";
 }
 
-std::string GetDiodColorCommand::execute(std::string arg)
+std::string GetDiodColorCommand::execute(const std::string& arg)
 {
     return ("OK" + this->color.getValueString());
 }
