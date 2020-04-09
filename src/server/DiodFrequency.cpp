@@ -14,23 +14,17 @@ DiodFrequency::DiodFrequency(double initVal, double min, double max):
   maxValue(max)
 {
 }
-
-void DiodFrequency::setValue(double freq)
+// задача необходимой частоты, возвращает true если прошло успешно
+bool DiodFrequency::setValue(double freq)
 {
-    this->value = freq;
-    // проверка на пользовательские ограничения
-    if (this->value < this->minValue)
+    if ((this->minValue < freq) && (freq < this->maxValue))
     {
-        this->value = this->minValue;
+        this->value = freq;
+        return true;
     }
-    else if (this->value > this->maxValue)
+    else
     {
-       this->value = this->maxValue;
-    }
-    // проверка на адекватность значения (частота неотрицательна)
-    if (this->value < 0)
-    {
-        this->value = 0.0;
+        return false;
     }
 }
 
