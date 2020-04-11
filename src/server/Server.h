@@ -15,7 +15,7 @@ private:
     //(храним не в стеке, чтобы не было зависимостей от заголовков)
     CameraDiod* pDiod;
     // активация команды
-    void activateCommand(std::unique_ptr<ICommand>& command);
+    void activateCommand(ICommand* command);
     // хранилище активных команд
-    std::unordered_map<std::string, std::unique_ptr<ICommand>&> commands;
+    std::unordered_map<std::string, ICommand*> commands;
 };

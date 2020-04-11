@@ -7,16 +7,20 @@ Server::Server()
 {
     pDiod = new CameraDiod();
     // активация команд
-    std::unique_ptr<ICommand> command =
-      std::make_unique<SetDiodStateCommand>(pDiod->state);
-    activateCommand(command);
+    activateCommand(new SetDiodStateCommand(pDiod->state));
 }
 Server::~Server()
 {
+    // удаляем всю динамическую память
     delete(pDiod);
+    // не забывая про сохраненную память в контейнере команд
+    for (auto item : commands)
+    {
+        delete(item.second);
+    }
 }
 // логика активации команды
-void Server::activateCommand(std::unique_ptr<ICommand>& command)
+void Server::activateCommand(ICommand* command)
 {
     commands.emplace(command->getName(), command);
 }
