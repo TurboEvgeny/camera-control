@@ -30,7 +30,7 @@ DiodFrequency::~DiodFrequency()
 // задача необходимой частоты, возвращает true если прошло успешно
 bool DiodFrequency::setValue(double freq)
 {
-    if ((this->minValue < freq) && (freq < this->maxValue))
+    if ((this->minValue <= freq) && (freq <= this->maxValue))
     {
         this->value = freq;
         return true;
