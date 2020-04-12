@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <unordered_map>
 #include <memory>
@@ -10,11 +11,13 @@ class Server
 public:
     Server();
     ~Server();
+    // логика сервера
+    void networkLogic();
+    // выполнение полученной строки 
+    void execInputString(const std::string& input, std::string& result);
 private:
     // активация команды
     void activateCommand(ICommand* command);
-    // выполнение полученной строки 
-    void execInputString(const std::string& input, std::string& result);
     // выполнение команды (возвращает строку)
     std::string exec(const std::string& cmd, const std::string& arg);
     // данные о диоде

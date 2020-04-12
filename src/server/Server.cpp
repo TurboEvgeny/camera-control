@@ -4,6 +4,7 @@
 #include "CommandsDiodState.h" // SetDiodStateCommand, GetDiodStateCommand
 #include "CommandsDiodColor.h" // SetDiodColorCommand, GetDiodColorCommand
 #include "CommandsDiodFreq.h" // SetDiodFreqCommand, GetDiodFreqCommand
+#include "AsyncTcpServer.h"
 #include <vector>
 #include <regex>
 #include <iostream>
@@ -17,24 +18,6 @@ Server::Server()
     activateCommand(new GetDiodColorCommand(pDiod->color));
     activateCommand(new SetDiodFreqCommand(pDiod->frequency));
     activateCommand(new GetDiodFreqCommand(pDiod->frequency));
-    std::string result;
-    execInputString("get-led-state\n", result);
-    execInputString("set-led-color yellow\n", result);
-    execInputString("set-led-color red\n", result);
-    execInputString("set-led-state on\n", result);
-    execInputString("get-led-color", result);
-    execInputString("get-led-state\n", result);
-    execInputString("get-led-rate", result);
-    execInputString("set-led-rate 3.342\n", result);
-    execInputString("get-led-rate", result);
-    execInputString("set-led-rate 2\n", result);
-    execInputString("get-led-rate", result);
-    execInputString("set-led-rate -12\n", result);
-    execInputString("get-led-rate", result);
-    execInputString("set-led-rate 10\n", result);
-    execInputString("get-led-rate", result);
-    execInputString("set-led-rate 5\n", result);
-    execInputString("get-led-rate", result);
 }
 Server::~Server()
 {
@@ -83,4 +66,12 @@ std::string Server::exec(const std::string& cmd, const std::string& arg)
     {
         return "FAILED";
     }
+}
+
+// логика сервера
+void Server::networkLogic()
+{
+    boost::asio::io_context io_context;
+    AsyncServer s(io_context, 11111, this);
+    io_context.run();
 }
