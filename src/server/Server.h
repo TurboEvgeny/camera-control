@@ -11,11 +11,15 @@ public:
     Server();
     ~Server();
 private:
+    // активация команды
+    void activateCommand(ICommand* command);
+    // выполнение полученной строки 
+    void execInputString(const std::string& input, std::string& result);
+    // выполнение команды (возвращает строку)
+    std::string exec(const std::string& cmd, const std::string& arg);
     // данные о диоде
     //(храним не в стеке, чтобы не было зависимостей от заголовков)
     CameraDiod* pDiod;
-    // активация команды
-    void activateCommand(ICommand* command);
     // хранилище активных команд
     std::unordered_map<std::string, ICommand*> commands;
 };
