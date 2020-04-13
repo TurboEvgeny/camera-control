@@ -28,6 +28,12 @@ TcpClient::~TcpClient()
 {
 }
 
+// узнаем является ли аргумент командой на выход
+bool TcpClient::exitCommand(const char* command)
+{
+    return (strcmp(command, "exit") == 0);
+}
+// логика общения по сети
 void TcpClient::transmission()
 {
     while(this->connected)
@@ -37,6 +43,11 @@ void TcpClient::transmission()
         char request[MAX_BUFFER_LENGTH];
         std::cin.getline(request, MAX_BUFFER_LENGTH);
         size_t request_length = std::strlen(request);
+        // проверяем - если команда выходная - то уходим
+        if (this->exitCommand(request))
+        {
+            break;
+        }
         // инициализруем объект обработки ошибок записи
         boost::system::error_code error_write;
         // высылываем его

@@ -6,10 +6,13 @@ using boost::asio::ip::tcp;
 class TcpClient
 {
  public:
-  TcpClient(std::string ip, std::string port);
-  ~TcpClient();
-  void transmission();
+    TcpClient(std::string ip, std::string port);
+    ~TcpClient();
+    // логика общения по сети
+    void transmission();
  private:
+    // узнаем является ли аргумент командой на выход
+    bool exitCommand(const char* command);
     // признак успешнего соединения
     bool connected;
     // boost-овые перенные для tcp-соединения
