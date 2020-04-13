@@ -20,10 +20,18 @@ int main()
                            s,
                            boost::asio::buffer(request, request_length));
         char reply[BUFFER_LENGTH];
+        boost::system::error_code error;
         memset(reply, 0, sizeof(reply));
-        size_t reply_length =
-          boost::asio::read(s, boost::asio::buffer(reply, s.available()));
-        std::cout << "Reply is: " << reply << std::endl;
+        // делаем блокирующее считывание данных
+        s.read_some(boost::asio::buffer(reply), error);
+        if (error)
+        {
+            std::cout << "error!";
+        }
+        else
+        {
+            std::cout << "Reply is: " << reply << std::endl;
+        }
     }
     return 0;
 }
