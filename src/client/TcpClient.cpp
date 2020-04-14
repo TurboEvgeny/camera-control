@@ -12,6 +12,7 @@ TcpClient::TcpClient(std::string ip, std::string port):
     {
         this->connected = true;
         // выводим приветствие
+        std::cout << "connected to " << ip << ":" << port << std::endl;
         std::cout << "Enter command or type 'exit'" << std::endl;
     }
     // не смогли соединиться, выставляем флаг и пишем сообщение об ошибке
