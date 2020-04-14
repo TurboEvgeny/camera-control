@@ -14,5 +14,6 @@ add_executable(camera-control-server
     CommandsDiodState.cpp
     CommandsDiodColor.cpp
     CommandsDiodFreq.cpp
-    Server.cpp)
+    Server.cpp
+    AsyncTcpServer.cpp)
 target_link_libraries(camera-control-server ${Boost_LIBRARIES} pthread)
