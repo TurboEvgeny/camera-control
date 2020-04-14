@@ -45,7 +45,8 @@ void Server::execInputString(const std::string& input, std::string& result)
     std::regex regex(R"([\s])"); // split on space and comma
     std::sregex_token_iterator it(input.begin(), input.end(), regex, -1);
     std::vector<std::string> words(it, {});
-    if (words.size() > 1)
+    // по стандарту должно быть всего 2 слова, иначе аргумент некорректен
+    if (words.size() == 2)
     {
         result = exec(words[0], words[1]);
     }
@@ -63,6 +64,7 @@ std::string Server::exec(const std::string& cmd, const std::string& arg)
     // что-то нашли - испольняем и возвращаем результат
     if (iter != this->commands.end())
     {
+      std::cout << "arg=" << arg << std::endl;
         return iter->second->execute(arg);
     }
     else
