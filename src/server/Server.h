@@ -9,7 +9,7 @@ class ICommand;
 class Server
 {
 public:
-    Server();
+    Server(std::string port);
     ~Server();
     // логика сервера
     void networkLogic();
@@ -25,4 +25,6 @@ private:
     CameraDiod* pDiod;
     // хранилище активных команд
     std::unordered_map<std::string, ICommand*> commands;
+    // порт для tcp подключения
+    int listenPort;
 };

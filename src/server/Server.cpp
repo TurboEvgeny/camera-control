@@ -8,7 +8,10 @@
 #include <vector>
 #include <regex>
 #include <iostream>
-Server::Server()
+#include <boost/property_tree/ptree.hpp>       // ini parse
+#include <boost/property_tree/ini_parser.hpp>  // ini parse
+Server::Server(std::string port):
+  listenPort(std::stoi(port))
 {
     pDiod = new CameraDiod();
     // активация команд
@@ -71,7 +74,18 @@ std::string Server::exec(const std::string& cmd, const std::string& arg)
 // логика сервера
 void Server::networkLogic()
 {
-    boost::asio::io_context io_context;
-    AsyncServer s(io_context, 11111, this);
-    io_context.run();
+     if ((0 < listenPort) &&
+         (listenPort < std::numeric_limits<short>::max()))
+    {
+        std::cout << "opening port " << listenPort;
+        std::cout << " for connections" << std::endl;
+        boost::asio::io_context io_context;
+        AsyncServer s(io_context, listenPort, this);
+        io_context.run();
+    }
+    else
+    {
+      std::cout << "port number " << listenPort << " is incorrect";
+      std::cout << "check 0-65535 range" << std::endl;
+    }
 }
