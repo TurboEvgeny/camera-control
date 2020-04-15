@@ -9,7 +9,7 @@ class ICommand;
 class Server
 {
 public:
-    Server(std::string port);
+    Server(std::string port, bool log = false);
     ~Server();
     // логика сервера
     void networkLogic();
@@ -27,4 +27,6 @@ private:
     std::unordered_map<std::string, ICommand*> commands;
     // порт для tcp подключения
     int listenPort;
+    // флаг вывода команда
+    bool logging;
 };

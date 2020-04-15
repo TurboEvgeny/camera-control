@@ -10,8 +10,9 @@
 #include <iostream>
 #include <boost/property_tree/ptree.hpp>       // ini parse
 #include <boost/property_tree/ini_parser.hpp>  // ini parse
-Server::Server(std::string port):
-  listenPort(std::stoi(port))
+Server::Server(std::string port, bool log):
+  listenPort(std::stoi(port)),
+  logging(log)
 {
     pDiod = new CameraDiod();
     // активация команд
@@ -54,7 +55,11 @@ void Server::execInputString(const std::string& input, std::string& result)
     {
         result = exec(words[0], "");
     }
-    std::cout << "result=" << result << std::endl;
+    // выводим строку результата (в случае флага логирования)
+    if (this->logging)
+    {
+        std::cout << "result=" << result << std::endl;
+    }
 }
 // выполнение команды (возвращает строку)
 std::string Server::exec(const std::string& cmd, const std::string& arg)
@@ -64,7 +69,11 @@ std::string Server::exec(const std::string& cmd, const std::string& arg)
     // что-то нашли - испольняем и возвращаем результат
     if (iter != this->commands.end())
     {
-      std::cout << "arg=" << arg << std::endl;
+        if (this->logging)
+        {
+            std::cout << "command=" << cmd << std::endl;
+            std::cout << "arg=" << arg << std::endl;
+        }
         return iter->second->execute(arg);
     }
     else

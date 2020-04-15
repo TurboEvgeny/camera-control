@@ -33,9 +33,6 @@ void Session::do_read()
                 strncpy(data_, answer.c_str(), MAX_BUFFER_LENGTH-1);
                 // считаем количество байт, которое необходимо отправить
                 size_t sendBytes = strlen(data_) * sizeof(data_[0]);
-                // выводим лог
-                std::cout << "sending... " << data_ << std::endl;
-                std::cout << "bytes=" << sendBytes << std::endl;
                 do_write(sendBytes);
             }
         });
