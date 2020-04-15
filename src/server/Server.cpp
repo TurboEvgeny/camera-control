@@ -42,15 +42,20 @@ void Server::activateCommand(ICommand* command)
 void Server::execInputString(const std::string& input, std::string& result)
 {
     // логика обработки команда простая - ожидается 2 слова,
-    // разделенные пробелом, команда + аргумент
-    std::regex regex(R"([\s])"); // split on space and comma
+    // разделенные пробелом: команда + аргумент
+  
+    // запускам регулярное выражение, которое создаст список слов,
+    // разделенных пробелами
+    std::regex regex(R"([\s])");
     std::sregex_token_iterator it(input.begin(), input.end(), regex, -1);
     std::vector<std::string> words(it, {});
-    // по стандарту должно быть всего 2 слова, иначе аргумент некорректен
+    // если в векторе 2 слова - значит у нас есть и команда и аргумент
+    // (считаем, что в аргументе пробелов нет!)
     if (words.size() == 2)
     {
         result = exec(words[0], words[1]);
     }
+    // в любом другом случае выполняем команду без аргументов
     else
     {
         result = exec(words[0], "");
