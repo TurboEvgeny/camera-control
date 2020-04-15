@@ -10,8 +10,7 @@ int main()
     try
     {
         boost::property_tree::ptree tree;
-        boost::property_tree::ini_parser::read_ini(
-            "../../settings/server.ini", tree);
+        boost::property_tree::ini_parser::read_ini("server.ini", tree);
         portStr = tree.get<std::string>("network.port");
     }
     // при ошибке выводим описание проблемы

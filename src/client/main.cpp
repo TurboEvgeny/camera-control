@@ -9,8 +9,7 @@ int main()
     try
     {
         boost::property_tree::ptree tree;
-        boost::property_tree::ini_parser::read_ini(
-            "../../settings/client.ini", tree);
+        boost::property_tree::ini_parser::read_ini("client.ini", tree);
         ipStr = tree.get<std::string>("network.ip");
         portStr = tree.get<std::string>("network.port");
     }

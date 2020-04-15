@@ -17,3 +17,4 @@ add_executable(camera-control-server
     Server.cpp
     AsyncTcpServer.cpp)
 target_link_libraries(camera-control-server ${Boost_LIBRARIES} pthread)
+configure_file(../../settings/server.ini server.ini COPYONLY)
