@@ -17,14 +17,14 @@ public:
     void execInputString(const std::string& input, std::string& result);
 private:
     // активация команды
-    void activateCommand(ICommand* command);
+    void activateCommand(std::unique_ptr<ICommand>&& command);
     // выполнение команды (возвращает строку)
     std::string exec(const std::string& cmd, const std::string& arg);
     // данные о диоде
     //(храним не в стеке, чтобы не было зависимостей от заголовков)
     CameraDiod* pDiod;
     // хранилище активных команд
-    std::unordered_map<std::string, ICommand*> commands;
+    std::unordered_map<std::string, std::unique_ptr<ICommand>> commands;
     // порт для tcp подключения
     int listenPort;
     // флаг вывода команда

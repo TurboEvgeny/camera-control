@@ -16,27 +16,22 @@ Server::Server(std::string port, bool log):
 {
     pDiod = new CameraDiod();
     // активация команд
-    activateCommand(new SetDiodStateCommand(pDiod->state));
-    activateCommand(new GetDiodStateCommand(pDiod->state));
-    activateCommand(new SetDiodColorCommand(pDiod->color));
-    activateCommand(new GetDiodColorCommand(pDiod->color));
-    activateCommand(new SetDiodFreqCommand(pDiod->frequency));
-    activateCommand(new GetDiodFreqCommand(pDiod->frequency));
+    activateCommand(std::make_unique<SetDiodStateCommand>(pDiod->state));
+    activateCommand(std::make_unique<GetDiodStateCommand>(pDiod->state));
+    activateCommand(std::make_unique<SetDiodColorCommand>(pDiod->color));
+    activateCommand(std::make_unique<GetDiodColorCommand>(pDiod->color));
+    activateCommand(std::make_unique<SetDiodFreqCommand>(pDiod->frequency));
+    activateCommand(std::make_unique<GetDiodFreqCommand>(pDiod->frequency));
 }
 Server::~Server()
 {
     // удаляем всю динамическую память
     delete(pDiod);
-    // не забывая про сохраненную память в контейнере команд
-    for (auto item : commands)
-    {
-        delete(item.second);
-    }
 }
 // логика активации команды
-void Server::activateCommand(ICommand* command)
+void Server::activateCommand(std::unique_ptr<ICommand>&& command)
 {
-    commands.emplace(command->getName(), command);
+    commands.emplace(command->getName(), std::move(command));
 }
 // выполнение полученной строки 
 void Server::execInputString(const std::string& input, std::string& result)
